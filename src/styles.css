@@ -1,0 +1,5 @@
+@import '../src/assets/css/global.css';
+
+.no-scroll {
+   overflow: hidden;
+}

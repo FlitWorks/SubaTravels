@@ -1,0 +1,263 @@
+<app-loader *ngIf="isloading"></app-loader>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 d-flex d-lg-block justify-content-center">
+      <div class="workFlowHolder">
+        <div class="workFlow rounded-circle position-relative">
+          <a
+            class="workflowInner d-flex rounded-circle w-100 h-100 position-relative"
+          >
+            <img
+              src="../../../assets/Images/giphy.gif"
+              class="w-100 h-100"
+              alt="movingCar"
+            />
+            <div class="caption">
+              <h3 class="text-center">Make a Booking for your family</h3>
+            </div>
+          </a>
+
+          <div
+            class="step one d-flex align-items-center justify-content-center rounded-circle"
+          >
+            <span>24/7 Support</span>
+            <img src="../../../assets/Images/24-hours-support.svg" alt="icon" />
+          </div>
+          <div
+            class="step two d-flex align-items-center justify-content-center rounded-circle"
+          >
+            <span>Safety Guarantee</span>
+            <img src="../../../assets/Images/life-insurance.svg" alt="icon" />
+          </div>
+          <div
+            class="step three d-flex align-items-center justify-content-center rounded-circle"
+          >
+            <span>24/7 Support</span>
+            <img src="../../../assets/Images/taxi-driver.svg" alt="icon" />
+          </div>
+          <div
+            class="step four d-flex align-items-center justify-content-center rounded-circle"
+          >
+            <span>Fast Pickup</span>
+            <img src="../../../assets/Images/taxi.svg" alt="icon" />
+          </div>
+          <div
+            class="step five d-flex align-items-center justify-content-center rounded-circle"
+          >
+            <span>Affordable Rate</span>
+            <img src="../../../assets/Images/loan.svg" alt="icon" />
+          </div>
+          <div
+            class="step six d-flex align-items-center justify-content-center rounded-circle"
+          >
+            <span>Many Locations</span>
+            <img src="../../../assets/Images/itinerary.svg" alt="icon" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6" id="booking">
+      <div class="book-taxi px-3 py-5">
+        <legend>
+          <h3 class="text-center">Book Your Taxi Ride</h3>
+        </legend>
+        <ng-container *ngIf="!showBookingInfo"> 
+        <form
+          class="form"
+          #bookingForm="ngForm"
+          ngModel
+          (ngSubmit)="onSubmit()"
+        >
+          <fieldset>
+         
+
+            <div
+              class="d-flex flex-wrap justify-content-center gap-4 mt-5 mb-3"
+            >
+              <div class="form-check" *ngFor="let trips of trip">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  [id]="trips.id"
+                  [value]="trips.value"
+                  name="tripType"
+                  ngModel
+                  id="oneway"
+                  required
+                />
+                <label class="form-check-label" for="oneway">
+                  {{ trips.displayValue }}
+                </label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <label>Name</label>
+                <input
+                  class="form-control form-control-lg"
+                  type="text"
+                  placeholder=""
+                  name="Name"
+                  ngModel
+                  required
+                  #name="ngModel"
+                />
+              </div>
+              <div class="col-md-6 mb-4">
+                <label>Email</label>
+                <input
+                  class="form-control form-control-lg"
+                  type="text"
+                  placeholder=""
+                  name="email"
+                  ngModel
+                  required
+                  email
+                  #email="ngModel"
+                />
+              </div>
+              <div class="col-md-6 mb-4">
+                <label>Mobile Number</label>
+                <input
+                  class="form-control form-control-lg"
+                  type="text"
+                  placeholder=""
+                  name="PhoneNumber"
+                  ngModel
+                  required
+                  #PhoneNumber="ngModel"
+                />
+              </div>
+              <div class="col-md-6 mb-4">
+                <label>Pickup Location</label>
+                <input
+                  class="form-control form-control-lg"
+                  type="text"
+                  placeholder=""
+                  name="pickupLocation"
+                  ngModel
+                  required
+                  #pickupLocation="ngModel"
+                />
+              </div>
+              <div class="col-md-6 mb-4">
+                <label>Drop Location</label>
+                <input
+                  class="form-control form-control-lg"
+                  type="text"
+                  placeholder=""
+                  name="dropLocation"
+                  ngModel
+                  required
+                  #dropLocation="ngModel"
+                />
+              </div>
+              <div class="col-md-6 mb-4">
+                <label>Pickup Date</label>
+                <input
+                  class="form-control form-control-lg"
+                  type="date"
+                  [(ngModel)]="pickUpDate"
+                  placeholder=""
+                  name="pickUpDate"
+                  required
+                  #pickupDate="ngModel"
+                />
+              </div>
+              <div class="col-md-6 mb-4">
+                <label>Pickup Time</label>
+                <input
+                  class="form-control form-control-lg"
+                  type="time"
+                  id="autocomplete-input"
+                  placeholder="Pickup Time"
+                  name="pickupTime"
+                  [(ngModel)]="pickUpTime"
+                  ngModel
+                  required
+                  #pickupTime="ngModel"
+                />
+              </div>
+              <div class="col-md-6 mb-4">
+                <label>Select your Vehicle</label>
+                <select
+                  class="form-select"
+                  [(ngModel)]="vechileType"
+                  name="vechileType"
+                  required
+                >
+                  <option selected value="Sedan">Sedan</option>
+                  <option value="Etios">Etios</option>
+                  <option value="SUV">SUV</option>
+                  <option value="Innova">Innova</option>
+                </select>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-warning"
+              [disabled]="bookingForm.invalid"
+            >
+              Make a book
+            </button>
+          </fieldset>
+        </form>
+      </ng-container>
+        <div class="booking-info-holder pt-3" *ngIf="showBookingInfo">
+          <div class="d-flex mb-2">
+            <label><strong>Name</strong></label>
+            <span>{{name}}</span>
+          </div>
+
+          <div class="d-flex mb-2">
+            <label><strong>Email</strong></label>
+            <span>{{ emailAddress}}</span>
+          </div>
+          <div class="d-flex mb-2">
+            <label><strong>Mobile Number</strong></label>
+            <span>{{mobileNumber }}</span>
+          </div>
+          <div class="d-flex mb-2">
+            <label><strong>Pickup Location</strong></label>
+            <span>{{pickupLocation }}</span>
+          </div>
+          <div class="d-flex mb-2">
+            <label><strong>Drop Location</strong></label>
+            <span>{{ dropLocation }}</span>
+          </div>
+          <div class="d-flex mb-2">
+            <label><strong>Pickup Date</strong></label>
+            <span>{{ pickUpDate }}</span>
+          </div>
+          <div class="d-flex mb-2">
+            <label><strong>Pickup Time</strong></label>
+            <span>{{ pickUpTime }}</span>
+          </div>
+          <div class="d-flex mb-2">
+            <label><strong>Vechile Type</strong></label>
+            <span>{{ vechileType }}</span>
+          </div>
+          <div class="d-flex mb-2">
+            <label><strong>Trip Type</strong></label>
+            <span>{{ tripType }}</span>
+          </div>
+          <div class="d-flex mb-2">
+            <label><strong>Total Fare</strong></label>
+            <span>{{"Rs.2500/ + Toll fares"}}</span>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-warning mt-3"
+           
+            (click)="OnConfirming()"
+          >
+            Booking Confirmation
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

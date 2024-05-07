@@ -1,0 +1,56 @@
+
+  <div class="container">
+    <h2 class="text-center position-relative mb-5 pb-3">
+      Choose Your Taxi To Ride
+    </h2>
+    <p>
+      Get Drop Taxi service one of the cost effective and value for the money
+      service providers.We offer Get Drop Taxi services at any time of day or
+      night, using a secure procedure.
+    </p>
+
+    <div class="row mt-5 justify-content-center">
+      <div class="col-md-6 col-xl-4 mb-4" *ngFor="let car of cars">
+        <div class="card">
+          <div class="imageHolder p-4">
+            <img [src]="car.carImg" class="card-img-top" alt="Image" />
+          </div>
+          <div class="card-body p-4 pb-5">
+            <h3 class="card-title mt-3 mb-4">{{ car.carType }}</h3>
+            <div
+              class="d-flex flex-column flex-lg-row justify-content-between gap-3"
+            >
+              <ul>
+                <li class="mb-3">
+                  <a
+                    ><span>One Way Trip</span> :
+                    <i class="fa-solid fa-indian-rupee-sign"></i>
+                    {{ car.oneWayTrip }}</a
+                  >
+                </li>
+                <li class="mb-3">
+                  <a
+                    ><span>Round Trip</span> :
+                    <i class="fa-solid fa-indian-rupee-sign"></i>
+                    {{ car.roundTrip }}</a
+                  >
+                </li>
+                <li class="mb-3">
+                  <a
+                    ><span>Driver Beta</span> :
+                    <i class="fa-solid fa-indian-rupee-sign"></i>
+                    {{ car.driverBeta }}</a
+                  >
+                </li>
+                <li><a>Toll Gate Charges Extra</a></li>
+              </ul>
+              <a [routerLink]="'app'" [fragment]="'booking'" class="btn btn-warning d-flex align-items-center" (click)="booking(car)"
+                >Book Now</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

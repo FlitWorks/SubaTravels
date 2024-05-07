@@ -1,0 +1,52 @@
+<div class="container">
+  <h2 class="text-center position-relative mb-5 pb-3">
+    Choose Your Taxi Services
+  </h2>
+  <p>
+    Get Drop Taxi offers taxi services in Chennai - Book full day taxi in
+    Chennai and other taxi service like Airport transfer, Railway transfer in
+    Chennai with top car operators. Make your journey safe and hassle free with
+    Get Drop Taxi.
+  </p>
+
+  <div class="row mt-5 justify-content-center">
+    <div
+      class="col-md-6 col-xl-4 mb-4"
+      *ngFor="let taxiservices of taxiService"
+    >
+      <div class="card active">
+        <div class="imageHolder">
+          <img
+            [src]="taxiservices.placesImg"
+            class="card-img-top"
+            alt="Image"
+          />
+        </div>
+        <div class="card-body p-4 pb-5">
+          <h3 class="card-title mt-3 mb-4">{{ taxiservices.place }}</h3>
+
+          <ul>
+            <li class="mb-3">
+              <a>{{ taxiservices.destinationPlaces1 }}</a>
+            </li>
+            <li class="mb-3">
+              <a>{{ taxiservices.destinationPlaces2 }}</a>
+            </li>
+            <li class="mb-3">
+              <a>{{ taxiservices.destinationPlaces3 }}</a>
+            </li>
+            <li class="mb-3">
+              <a>{{ taxiservices.destinationPlaces4 }}</a>
+            </li>
+            <li class="mb-3">
+              <a>{{ taxiservices.destinationPlaces5 }}</a>
+            </li>
+            <li class="mb-3">
+              <a>{{ taxiservices.destinationPlaces6 }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

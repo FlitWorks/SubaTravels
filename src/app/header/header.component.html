@@ -1,0 +1,130 @@
+<header class="sticky-top">
+  <div class="topBar">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-auto">
+          <div class="d-flex align-items-center gap-3 gap-md-5 h-100">
+            <a
+              href="tel:+91 99400 84409"
+              class="d-flex align-items-center gap-2"
+              ><i class="fa-solid fa-phone-volume"></i>
+              <span class="d-none d-md-block">{{ "+91 99400 84409" }}</span></a
+            >
+
+            <a
+              href="mailto:subatravels2023@gmail.com"
+              class="separator d-flex align-items-center gap-2"
+              ><i class="fa-solid fa-envelope"></i>
+              <span class="d-none d-md-block">{{
+                "subatravels2023@gmail.com"
+              }}</span></a
+            >
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="d-flex gap-3">
+            <a
+              class="socialIcon d-flex align-items-center justify-content-center rounded-5"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a
+              class="socialIcon d-flex align-items-center justify-content-center rounded-5"
+              ><i class="fa-brands fa-xing"></i
+            ></a>
+            <a
+              class="socialIcon d-flex align-items-center justify-content-center rounded-5"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand">
+        <img src="../../../assets/Images/logo.svg" alt="Logo" />
+      </a>
+      <button
+        #navbarToggler
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="collapse navbar-collapse flex-grow-0"
+        id="navbarSupportedContent"
+      >
+        <ul class="navbar-nav gap-sm-3 gap-xl-5">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              [routerLink]="'/app'"
+              (click)="collapseNav()"
+              [fragment]="'home'"
+              [class.active]="(activeFragment | async) === 'home'"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              (click)="collapseNav()"
+              [routerLink]="'/app'"
+              [fragment]="'booking'"
+              [class.active]="(activeFragment | async) === 'booking'"
+              >Booking</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              (click)="collapseNav()"
+              [routerLink]="'/app'"
+              [fragment]="'tarif'"
+              [class.active]="(activeFragment | async) === 'tarif'"
+              >Tariff</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              (click)="collapseNav()"
+              [routerLink]="'/app'"
+              [fragment]="'aboutUs'"
+              [class.active]="(activeFragment | async) === 'aboutUs'"
+              >About</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              (click)="collapseNav()"
+              [routerLink]="'/app'"
+              [fragment]="'service'"
+              [class.active]="(activeFragment | async) === 'service'"
+              >Services</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              (click)="collapseNav()"
+              [routerLink]="'/app'"
+              [fragment]="'contact'"
+              [class.active]="(activeFragment | async) === 'contact'"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
