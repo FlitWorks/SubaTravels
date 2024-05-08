@@ -10,7 +10,7 @@ export class TaxiService {
   servingPlaces: ServingPlace[] = [
     {
       place: 'Chennai One Way Taxi',
-      placesImg: '../../../assets/Images/chennai.png',
+      placesImg: './assets/Images/chennai.png',
       destinationPlaces1: 'Chennai to Tirunelveli One Way Taxi',
       destinationPlaces2: 'Chennai to Kanyakumari One Way Taxi',
       destinationPlaces3: 'Chennai to Salem One Way Taxi',
@@ -20,7 +20,7 @@ export class TaxiService {
     },
     {
       place: 'Madurai One Way Taxi',
-      placesImg: '../../../assets/Images/madurai.png',
+      placesImg: './assets/Images/madurai.png',
       destinationPlaces1: 'Madurai to Chennai One Way Taxi',
       destinationPlaces2: 'Madurai to Kanyakumari One Way Taxi',
       destinationPlaces3: 'Madurai to Salem One Way Taxi Taxi',
@@ -30,7 +30,7 @@ export class TaxiService {
     },
     {
       place: 'Kanyakumari One Way Taxi',
-      placesImg: '../../../assets/Images/kanyakumari.png',
+      placesImg: './assets/Images/kanyakumari.png',
       destinationPlaces1: 'Kanyakumari to Chennai One Way Taxi',
       destinationPlaces2: 'Kanyakumari to Madurai One Way Taxi',
       destinationPlaces3: 'Kanyakumari to Salem One Way Taxi',
@@ -40,7 +40,7 @@ export class TaxiService {
     },
     {
       place: 'Bangalore One Way Taxi',
-      placesImg: '../../../assets/Images/bangalore.png',
+      placesImg: './assets/Images/bangalore.png',
       destinationPlaces1: 'Bangalore to Tirunelveli One Way Taxi',
       destinationPlaces2: 'Bangalore to Kanyakumari One Way Taxi',
       destinationPlaces3: 'Bangalore to Salem One Way Taxi',
@@ -50,7 +50,7 @@ export class TaxiService {
     },
     {
       place: 'Tirunelveli One Way Taxi',
-      placesImg: '../../../assets/Images/tirunelveli.png',
+      placesImg: './assets/Images/tirunelveli.png',
       destinationPlaces1: 'Tirunelveli to Madurai One Way Taxi',
       destinationPlaces2: 'Tirunelveli to Trichy One Way Taxi',
       destinationPlaces3: 'Tirunelveli to Salem One Way Taxi',
@@ -60,7 +60,7 @@ export class TaxiService {
     },
     {
       place: 'Pondicherry One Way Taxi',
-      placesImg: '../../../assets/Images/pondicherry.png',
+      placesImg: './assets/Images/pondicherry.png',
       destinationPlaces1: 'Pondicherry to Chennai One Way Taxi',
       destinationPlaces2: 'Pondicherry to Madurai One Way Taxi',
       destinationPlaces3: 'Pondicherry to Kanyakumari One Way Taxi',
@@ -70,7 +70,7 @@ export class TaxiService {
     },
     {
       place: 'Salem One Way Taxi',
-      placesImg: '../../../assets/Images/salem.png',
+      placesImg: './assets/Images/salem.png',
       destinationPlaces1: 'Salem to Madurai One Way Taxi',
       destinationPlaces2: 'Salem to Chenai One Way Taxi',
       destinationPlaces3: 'Salem to Kanyakumari One Way Taxi',
@@ -80,7 +80,7 @@ export class TaxiService {
     },
     {
       place: 'Coimbatore One Way Taxi',
-      placesImg: '../../../assets/Images/coimbatore.png',
+      placesImg: './assets/Images/coimbatore.png',
       destinationPlaces1: 'Coimbatore to Madurai One Way Taxi',
       destinationPlaces2: 'Coimbatore to Trichy One Way Taxi',
       destinationPlaces3: 'Coimbatore to Salem One Way Taxi',
@@ -90,7 +90,7 @@ export class TaxiService {
     },
     {
       place: 'Trichy One Way Taxi',
-      placesImg: '../../../assets/Images/trichy.png',
+      placesImg: './assets/Images/trichy.png',
       destinationPlaces1: 'Trichy to Chennai One Way Taxi',
       destinationPlaces2: 'Trichy to Madurai One Way Taxi',
       destinationPlaces3: 'Trichy to Kanyakumari One Way Taxi',
