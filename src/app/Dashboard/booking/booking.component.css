@@ -1,0 +1,13 @@
+#pickContainer{
+    position: relative;
+}
+
+.section{
+    position: absolute;
+    width: 200px;
+    background-color: blue;
+}
+
+.suggestion-item:hover {
+    background-color: gray;
+}

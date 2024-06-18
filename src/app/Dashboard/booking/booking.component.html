@@ -137,11 +137,24 @@
                   type="text"
                   placeholder=""
                   name="pickupLocation"
-                  ngModel
+                  [(ngModel)]="pickupLocation"
                   required
-                  #pickupLocation="ngModel"
+                  #pickupLocationInput="ngModel"
+                  (input)="fetchLocations(pickupLocationInput.value, 'pickup')"
                 />
+                <section class="section">
+                  <div class="suggestion-list" *ngIf="pickupSuggestions.length > 0">
+                    <div
+                      class="suggestion-item"
+                      *ngFor="let suggestion of pickupSuggestions"
+                      (click)="selectSuggestion(suggestion, 'pickup')"
+                    >
+                      {{ suggestion.name }}
+                    </div>
+                  </div>
+                </section>
               </div>
+              
               <div class="col-md-6 mb-4">
                 <label>Drop Location</label>
                 <input
@@ -149,11 +162,24 @@
                   type="text"
                   placeholder=""
                   name="dropLocation"
-                  ngModel
+                  [(ngModel)]="dropLocation"
                   required
-                  #dropLocation="ngModel"
+                  #dropLocationInput="ngModel"
+                  (input)="fetchLocations(dropLocationInput.value, 'drop')"
                 />
+                <section class="section">
+                  <div class="suggestion-list" *ngIf="dropSuggestions.length > 0">
+                    <div
+                      class="suggestion-item"
+                      *ngFor="let suggestion of dropSuggestions"
+                      (click)="selectSuggestion(suggestion, 'drop')"
+                    >
+                      {{ suggestion.name }}
+                    </div>
+                  </div>
+                </section>
               </div>
+              
               <div class="col-md-6 mb-4">
                 <label>Pickup Date</label>
                 <input

@@ -5,13 +5,15 @@ import { BookingForm } from '../../Model/booking-form';
 import { taxi } from '../../Model/taxi';
 import { CarService } from '../../Services/car.service';
 import { GoogleMap } from '@angular/google-maps';
+import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
   styleUrl: './booking.component.css',
 })
 export class BookingComponent {
-  constructor(private car: CarService, private datePipe: DatePipe) {}
+  constructor(private car: CarService, private datePipe: DatePipe, private http: HttpClient) {}
   @ViewChild('bookingForm') form: NgForm;
   @ViewChild('pickupLocation') pickuplocation: ElementRef;
   // @ViewChild('pickupTime')pickupTime:ElementRef;
@@ -113,5 +115,31 @@ export class BookingComponent {
 
     alert('Thanks for booking , you will recieve call. Plese wait for 5 mins');
     this.showBookingInfo = false;
+  }
+  pickupSuggestions: any[] = [];
+  dropSuggestions: any[] = [];
+  selectSuggestion(suggestion: any, type: string) {
+    if (type === 'pickup') {
+      this.pickupLocation = suggestion.name;
+      this.pickupSuggestions = []; // Hide the pickup suggestion list
+    } else if (type === 'drop') {
+      this.dropLocation = suggestion.name;
+      this.dropSuggestions = []; // Hide the drop suggestion list
+    }
+  }  
+  fetchLocations(text: string, type: string) {
+    var apiKey:string = "pk.eyJ1IjoibXV0aHVyYW0wNSIsImEiOiJjbHd4cHRuM2QxMmExMnJxejBtbGk1M2J0In0.Vc9lVGDg_i3Nb1G-ISGu-w"; 
+    this.http
+      .get(`https://api.mapbox.com/search/searchbox/v1/suggest?q=${text}&access_token=${apiKey}&session_token=user_id`)
+      .subscribe((response: any) => {
+        if (type === 'pickup') {
+          this.pickupSuggestions = response.suggestions;
+        } else if (type === 'drop') {
+          this.dropSuggestions = response.suggestions;
+        }
+      }, (error) => {
+        // Handle errors here
+        console.error(error);
+      });
   }
 }

@@ -10,6 +10,7 @@
   },
   "private": true,
   "dependencies": {
+    "-": "^0.0.1",
     "@angular/animations": "^17.0.0",
     "@angular/common": "^17.0.0",
     "@angular/compiler": "^17.0.0",
@@ -28,13 +29,14 @@
     "@types/googlemaps": "^3.43.3",
     "agm": "^0.0.0",
     "bootstrap": "^5.3.3",
+    "g": "^2.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.0.9",
-    "@angular/cli": "^17.0.9",
+    "@angular/cli": "^17.3.8",
     "@angular/compiler-cli": "^17.0.0",
     "@types/jasmine": "~5.1.0",
     "angular-cli-ghpages": "^2.0.0-beta.2",
