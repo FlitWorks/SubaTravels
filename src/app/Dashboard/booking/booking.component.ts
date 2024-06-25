@@ -28,12 +28,15 @@ export class BookingComponent {
   mobileNumber: string = '';
   pickupLocation: string = '';
   dropLocation: string = '';
+  dropId: any;
+  pickupId: any;
   pickUpDate: any = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
   pickUpTime: any = this.datePipe.transform(new Date(), 'HH:mm');
   cars: taxi;
   google: any;
   vechileType: string = 'Sedan';
   tripType: string = 'OneWaytrip';
+  distance: any;
   trip = [
     { id: 'check-oneWay', value: 'OneWaytrip', displayValue: 'One way Trip' },
     { id: 'check-twoWay', value: 'Twowaytrip', displayValue: 'Two way Trip' },
@@ -73,9 +76,50 @@ export class BookingComponent {
     this.pickUpTime = this.form.value.pickupTime;
     this.tripType = this.form.value.tripType;
     //  this.car =new taxi (this.car.carCard.filter(data=>data.carType.toLowerCase().includes(this.vechileType.toLowerCase())));
+
     this.cars = this.car.carCard.find(
       (data) => data.carType == this.vechileType
     );
+    function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+      var R = 6371; // Radius of the Earth in km
+      var dLat = deg2rad(lat2 - lat1);  // deg2rad below
+      var dLon = deg2rad(lon2 - lon1); 
+      var a = 
+        Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+        Math.sin(dLon/2) * Math.sin(dLon/2)
+        ; 
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+      var distance = R * c; // Distance in km
+      return distance;
+    }
+  
+    function deg2rad(deg) {
+        return deg * (Math.PI/180)
+    }
+    let pickLanLat = [];
+    let dropLanLat = []
+    var apiKey:string = "pk.eyJ1IjoibXV0aHVyYW0wNSIsImEiOiJjbHd4cHRuM2QxMmExMnJxejBtbGk1M2J0In0.Vc9lVGDg_i3Nb1G-ISGu-w"; 
+    this.http
+      .get(`https://api.mapbox.com/search/searchbox/v1/retrieve/${this.pickupId}?session_token=[GENERATED-UUID]&access_token=${apiKey}`)
+      .subscribe((response: any) => {
+        pickLanLat = response.features[0].geometry.coordinates;
+        console.log(response.features[0].geometry.coordinates)
+        this.http
+        .get(`https://api.mapbox.com/search/searchbox/v1/retrieve/${this.dropId}?session_token=[GENERATED-UUID]&access_token=${apiKey}`)
+        .subscribe((response: any) => {
+          dropLanLat = response.features[0].geometry.coordinates;
+          console.log(response.features[0].geometry.coordinates)
+          this.distance = getDistanceFromLatLonInKm(pickLanLat[1], pickLanLat[0], dropLanLat[1], dropLanLat[0]);
+        }, (error) => {
+          // Handle errors here
+          console.error(error);
+    });
+      }, (error) => {
+        // Handle errors here
+        console.error(error);
+    });
+    
     this.bookingForm = new BookingForm(
       this.name,
       this.tripType,
@@ -111,8 +155,6 @@ export class BookingComponent {
     this.car.carValue.unsubscribe();
   }
   OnConfirming() {
-   
-
     alert('Thanks for booking , you will recieve call. Plese wait for 5 mins');
     this.showBookingInfo = false;
   }
@@ -121,10 +163,12 @@ export class BookingComponent {
   selectSuggestion(suggestion: any, type: string) {
     if (type === 'pickup') {
       this.pickupLocation = suggestion.name;
-      this.pickupSuggestions = []; // Hide the pickup suggestion list
+      this.pickupId = suggestion.mapbox_id;
+      this.pickupSuggestions = [];
     } else if (type === 'drop') {
       this.dropLocation = suggestion.name;
-      this.dropSuggestions = []; // Hide the drop suggestion list
+      this.dropId = suggestion.mapbox_id;
+      this.dropSuggestions = [];
     }
   }  
   fetchLocations(text: string, type: string) {
