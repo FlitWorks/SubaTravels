@@ -83,43 +83,43 @@ export class BookingComponent {
     function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
       var R = 6371; // Radius of the Earth in km
       var dLat = deg2rad(lat2 - lat1);  // deg2rad below
-      var dLon = deg2rad(lon2 - lon1); 
-      var a = 
-        Math.sin(dLat/2) * Math.sin(dLat/2) +
-        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
-        Math.sin(dLon/2) * Math.sin(dLon/2)
-        ; 
-      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+      var dLon = deg2rad(lon2 - lon1);
+      var a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2)
+        ;
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
       var distance = R * c; // Distance in km
       return distance;
     }
-  
+
     function deg2rad(deg) {
-        return deg * (Math.PI/180)
+      return deg * (Math.PI / 180)
     }
     let pickLanLat = [];
     let dropLanLat = []
-    var apiKey:string = "pk.eyJ1IjoibXV0aHVyYW0wNSIsImEiOiJjbHd4cHRuM2QxMmExMnJxejBtbGk1M2J0In0.Vc9lVGDg_i3Nb1G-ISGu-w"; 
+    var apiKey: string = "pk.eyJ1IjoibXV0aHVyYW0wNSIsImEiOiJjbHd4cHRuM2QxMmExMnJxejBtbGk1M2J0In0.Vc9lVGDg_i3Nb1G-ISGu-w";
     this.http
       .get(`https://api.mapbox.com/search/searchbox/v1/retrieve/${this.pickupId}?session_token=[GENERATED-UUID]&access_token=${apiKey}`)
       .subscribe((response: any) => {
         pickLanLat = response.features[0].geometry.coordinates;
         console.log(response.features[0].geometry.coordinates)
         this.http
-        .get(`https://api.mapbox.com/search/searchbox/v1/retrieve/${this.dropId}?session_token=[GENERATED-UUID]&access_token=${apiKey}`)
-        .subscribe((response: any) => {
-          dropLanLat = response.features[0].geometry.coordinates;
-          console.log(response.features[0].geometry.coordinates)
-          this.distance = getDistanceFromLatLonInKm(pickLanLat[1], pickLanLat[0], dropLanLat[1], dropLanLat[0]);
-        }, (error) => {
-          // Handle errors here
-          console.error(error);
-    });
+          .get(`https://api.mapbox.com/search/searchbox/v1/retrieve/${this.dropId}?session_token=[GENERATED-UUID]&access_token=${apiKey}`)
+          .subscribe((response: any) => {
+            dropLanLat = response.features[0].geometry.coordinates;
+            console.log(response.features[0].geometry.coordinates)
+            this.distance = getDistanceFromLatLonInKm(pickLanLat[1], pickLanLat[0], dropLanLat[1], dropLanLat[0]);
+          }, (error) => {
+            // Handle errors here
+            console.error(error);
+          });
       }, (error) => {
         // Handle errors here
         console.error(error);
-    });
-    
+      });
+
     this.bookingForm = new BookingForm(
       this.name,
       this.tripType,
@@ -155,7 +155,19 @@ export class BookingComponent {
     this.car.carValue.unsubscribe();
   }
   OnConfirming() {
-    alert('Thanks for booking , you will recieve call. Plese wait for 5 mins');
+    location.href = `https://api.whatsapp.com/send?phone=9597447855&text= Hi Suba Travels 
+        ${encodeURIComponent(`name: ${this.name} 
+Trip Type:${this.tripType}
+Email: ${this.emailAddress},
+Mobile No: ${this.mobileNumber},
+PickUp Location: ${this.pickupLocation},
+Drop Location: ${this.dropLocation},
+PickUp Date: ${this.pickUpDate},
+PickUp Time: ${this.pickUpTime},
+Vehicle: ${this.vechileType},
+Car: ${this.cars}`
+        )
+      }`
     this.showBookingInfo = false;
   }
   pickupSuggestions: any[] = [];
@@ -170,9 +182,9 @@ export class BookingComponent {
       this.dropId = suggestion.mapbox_id;
       this.dropSuggestions = [];
     }
-  }  
+  }
   fetchLocations(text: string, type: string) {
-    var apiKey:string = "pk.eyJ1IjoibXV0aHVyYW0wNSIsImEiOiJjbHd4cHRuM2QxMmExMnJxejBtbGk1M2J0In0.Vc9lVGDg_i3Nb1G-ISGu-w"; 
+    var apiKey: string = "pk.eyJ1IjoibXV0aHVyYW0wNSIsImEiOiJjbHd4cHRuM2QxMmExMnJxejBtbGk1M2J0In0.Vc9lVGDg_i3Nb1G-ISGu-w";
     this.http
       .get(`https://api.mapbox.com/search/searchbox/v1/suggest?q=${text}&access_token=${apiKey}&session_token=user_id`)
       .subscribe((response: any) => {
