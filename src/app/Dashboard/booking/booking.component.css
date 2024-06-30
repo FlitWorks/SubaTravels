@@ -5,9 +5,11 @@
 .section{
     position: absolute;
     width: 200px;
-    background-color: blue;
+    background-color: #fff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .suggestion-item:hover {
+    cursor: pointer;
     background-color: gray;
 }
