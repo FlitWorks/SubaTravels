@@ -155,7 +155,7 @@ export class BookingComponent {
     this.car.carValue.unsubscribe();
   }
   OnConfirming() {
-    location.href = `https://api.whatsapp.com/send?phone=9940084409&text= Hi Suba Travels 
+    location.href = `https://api.whatsapp.com/send?phone=+919940084409&text= Hi Suba Travels 
         ${encodeURIComponent(`name: ${this.name} 
 Trip Type:${this.tripType}
 Email: ${this.emailAddress},
