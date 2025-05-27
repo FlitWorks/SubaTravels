@@ -48,7 +48,19 @@ export class BookingComponent {
   ngOnInit(): void {
     // this.initAutocomplete();
   }
+  fareRatesOneWay: { [key: string]: number } = {
+    Sedan: 14,
+    Etios: 15,
+    SUV: 19,
+    Innova: 20,
+  };
 
+  fareRatesTwoWay: { [key: string]: number } = {
+    Sedan: 13,
+    Etios: 14,
+    SUV: 18,
+    Innova: 19,
+  };
   // initAutocomplete() {
   //   const input = document.getElementById(
   //     'autocomplete-input'
@@ -65,6 +77,15 @@ export class BookingComponent {
       this.cars = value;
     });
     this.setValues();
+  }
+  get totalFare(): number {
+    let rate: number;
+    if (this.tripType === 'Twowaytrip') {
+      rate = this.fareRatesTwoWay[this.vechileType] || 0;
+    } else {
+      rate = this.fareRatesOneWay[this.vechileType] || 0;
+    }
+    return this.distance ? Math.round(this.distance * rate) : 0;
   }
   onSubmit() {
     console.log(this.form);
